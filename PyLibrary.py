@@ -1,15 +1,16 @@
 import json
 
-addjson = {}
+save = {}
 books = []
+print(type(save))
 print('Welcome to PyLibrary cmd line. \n')
 
 with open('books.txt', 'r') as i:
     books = i.read().splitlines()
-def writefile(file, book, id):
-    with open(file, 'a') as i:
-        addjson[str(id)] = {"book": book}
-        json.dump(addjson, i)
+    print(type(save))
+with open('save.json', 'r') as i:
+    save = json.load(i)
+    print(type(save))
         
 
 while True:
@@ -22,4 +23,16 @@ while True:
         xid = input('What is the book? > ')
         user = input('What is the user? > ')
         #print(books)
+        save[xid] = user
+    elif cmd == 'save':
+        print('Now saving...')
+        with open('save.json', 'r+') as i:
+            json.dump(save, i)
+            try:    
+                save = json.load(i)
+            except:
+                pass
+    elif cmd == 'status':
+        for i in range(len(save)):
+            print('Book ' + books[i] + ' belongs to ' + save[books[i]])
 
