@@ -2,15 +2,12 @@ import json
 
 save = {}
 books = []
-print(type(save))
 print('Welcome to PyLibrary cmd line. \n')
 
 with open('books.txt', 'r') as i:
     books = i.read().splitlines()
-    print(type(save))
 with open('save.json', 'r') as i:
     save = json.load(i)
-    print(type(save))
         
 
 while True:
@@ -22,7 +19,6 @@ while True:
     elif cmd == 'borrow':
         xid = input('What is the book? > ')
         user = input('What is the user? > ')
-        #print(books)
         save[xid] = user
     elif cmd == 'save':
         print('Now saving...')
