@@ -1,9 +1,11 @@
 import json
 
 addjson = {}
-
+books = []
 print('Welcome to PyLibrary cmd line. \n')
 
+with open('books.txt', 'r') as i:
+    books = i.read().splitlines()
 def writefile(file, book, id):
     with open(file, 'a') as i:
         addjson[str(id)] = {"book": book}
@@ -15,14 +17,9 @@ while True:
     if cmd == 'addbook':
         print('What book wolud you like to add?')
         cmd = input('> ')
-        xid = input('What id? >')
-        writefile('books.json', cmd, xid)
+        books.append(cmd)
     elif cmd == 'borrow':
-        xid = input('What is the id? >')
-        user = input('What is the user id?')
-        with open('users.json', 'a+') as i:
-            i = i.read()
-            xfile = json.loads(i)
-            xfile[str(xid)]["books"].append(xid)
-            json.dump(xfile, i)
+        xid = input('What is the book? > ')
+        user = input('What is the user? > ')
+        #print(books)
 
